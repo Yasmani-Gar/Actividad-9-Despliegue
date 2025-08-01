@@ -1,16 +1,19 @@
 # Usar imagen oficial de Node.js
 FROM node:18
 
-# Establecer directorio de trabajo
-WORKDIR /app
+# Establecer directorio de trabajo en backend
+WORKDIR /app/backend
 
-# Copiar archivos de package
+# Copiar archivos de package al directorio de trabajo
 COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
 
-# Copiar el resto de los archivos
+# Instalar sqlite3 como dependencia global
+RUN npm install -g sqlite3
+
+# Copiar el resto de los archivos, incluyendo database.db
 COPY . .
 
 # Exponer el puerto
