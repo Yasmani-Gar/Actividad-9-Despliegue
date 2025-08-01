@@ -19,8 +19,8 @@ COPY . .
 # Exponer el puerto
 EXPOSE 3000
 
-# Copiar script de inicialización
-COPY init-db.sql /app/backend/init-db.sql
+# Copiar script de inicialización desde la carpeta backend
+COPY backend/init-db.sql /app/backend/init-db.sql
 RUN sqlite3 database.db < /app/backend/init-db.sql
 
 # Comando para iniciar la aplicación
