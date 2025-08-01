@@ -1,6 +1,9 @@
 # Usar imagen oficial de Node.js
 FROM node:18
 
+# Instalar SQLite
+RUN apt-get update && apt-get install -y sqlite3
+
 # Establecer directorio de trabajo en backend
 WORKDIR /app/backend
 
