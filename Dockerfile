@@ -4,8 +4,8 @@ FROM node:18
 # Establecer directorio de trabajo en backend
 WORKDIR /app/backend
 
-# Copiar archivos de package al directorio de trabajo
-COPY package*.json ./
+# Copiar archivos de package desde la carpeta backend
+COPY backend/package*.json ./
 
 # Instalar dependencias
 RUN npm install
@@ -14,12 +14,12 @@ RUN npm install
 RUN npm install -g sqlite3
 
 # Copiar el resto de los archivos, incluyendo database.db
-COPY . .
+COPY backend/ .
 
 # Exponer el puerto
 EXPOSE 3000
 
-# Copiar script de inicialización desde la carpeta backend
+# Copiar script de inicialización
 COPY backend/init-db.sql /app/backend/init-db.sql
 RUN sqlite3 database.db < /app/backend/init-db.sql
 
